@@ -8,48 +8,48 @@ on:
     branches:
       - main
       
-  env:
-    NODE_VERSION: 20
+env:
+  NODE_VERSION: 20
   
-  jobs:
-    ci:
-      name: Build, Test, Lint, Coverage 
-      runs-on: ubuntu-latest
-      
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v4
+jobs:
+  ci:
+    name: Build, Test, Lint, Coverage 
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-        - name: Set up Node.js
-          uses: actions/setup-node@v4
-          with:
-            node-version: ${{ env.NODE_VERSION }}
-            cache: 'npm'
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
 
-        - name: Install dependencies
-          run: npm install
+      - name: Install dependencies
+        run: npm install
 
-        - name: Run lint
-          working-directory: ./app
-          run: npm run lint
+      - name: Run lint
+        working-directory: ./app
+        run: npm run lint
 
-        - name: Run Tests Unitaites
-          working-directory: ./app
-          run: npm run test:unit
+      - name: Run Tests Unitaites
+        working-directory: ./app
+        run: npm run test:unit
 
-        - name: Run Tests d'Integration
-          working-directory: ./app
-          run: npm run test:integration
+      - name: Run Tests d'Integration
+        working-directory: ./app
+        run: npm run test:integration
 
-        - name: Load coverage
-          working-directory: ./app
-          run: npm run coverage
+      - name: Load coverage
+        working-directory: ./app
+        run: npm run coverage
 
-        - name: Upload du rapport de coverage
-          uses: actions/upload-artifact@v4
-          with:
-            name: coverage-report
-            path: coverage/
+      - name: Upload du rapport de coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
 
 
   
