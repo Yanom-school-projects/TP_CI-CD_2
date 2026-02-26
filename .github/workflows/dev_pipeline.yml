@@ -30,19 +30,15 @@ jobs:
         run: npm install
 
       - name: Run lint
-        working-directory: ./app
         run: npm run lint
 
       - name: Run Tests Unitaites
-        working-directory: ./app
         run: npm run test:unit
 
       - name: Run Tests d'Integration
-        working-directory: ./app
         run: npm run test:integration
 
       - name: Load coverage
-        working-directory: ./app
         run: npm run coverage
 
       - name: Upload du rapport de coverage
